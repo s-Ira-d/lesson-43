@@ -16,52 +16,98 @@ import {
 
 function App() {
   const student: Student = createPlatformUser("Ira", "student");
-
   const instructor: Instructor = createPlatformUser("Anna Smith", "instructor");
-
   const admin: Admin = createPlatformUser("Admin", "admin");
 
   return (
-    <main>
-      <section>
+    <main className="page">
+      <header className="hero">
+        <span className="hero-label">EDU SPACE</span>
+        <h1>Learning Management System</h1>
+        <p>Welcome to your educational platform</p>
+      </header>
+
+      <section className="section">
         <h2>Platform Users</h2>
 
-        <h3>{student.fullName}</h3>
-        <p>{showUserRole(student)}</p>
-        <p>{student.email}</p>
-        <p>Study level: {student.studyLevel}</p>
-        <p>Completed lessons: {student.completedLessons}</p>
+        <div className="users-grid">
+          <article className="card">
+            <span className="user-role">STUDENT</span>
+            <h3>{student.fullName}</h3>
+            <p>{showUserRole(student)}</p>
+            <p>{student.email}</p>
+            <div className="info-row">
+              <span>Study level</span>
+              <strong>{student.studyLevel}</strong>
+            </div>
+            <div className="info-row">
+              <span>Completed lessons</span>
+              <strong>{student.completedLessons}</strong>
+            </div>
+          </article>
 
-        <hr />
+          <article className="card">
+            <span className="user-role">INSTRUCTOR</span>
+            <h3>{instructor.fullName}</h3>
+            <p>{showUserRole(instructor)}</p>
+            <div className="info-row">
+              <span>Specialization</span>
+              <strong>{instructor.specialization}</strong>
+            </div>
+          </article>
 
-        <h3>{instructor.fullName}</h3>
-        <p>{showUserRole(instructor)}</p>
-        <p>{instructor.specialization}</p>
-
-        <hr />
-
-        <h3>{admin.fullName}</h3>
-        <p>{showUserRole(admin)}</p>
-        <p>Super Admin: {admin.isSuperAdmin ? "Yes" : "No"}</p>
+          <article className="card">
+            <span className="user-role">ADMIN</span>
+            <h3>{admin.fullName}</h3>
+            <p>{showUserRole(admin)}</p>
+            <div className="info-row">
+              <span>Super Admin</span>
+              <strong>{admin.isSuperAdmin ? "Yes" : "No"}</strong>
+            </div>
+          </article>
+        </div>
       </section>
 
-      <section>
+      <section className="section">
         <h2>Available Courses</h2>
 
-        {courses.map((c) => (
-          <div key={c.id}>
-            <h3>{c.title}</h3>
+        <div className="courses-grid">
+          {courses.map((c) => (
+            <article className="course-card" key={c.id}>
+              <div className="course-card-top">
+                <span className="course-category">{c.category}</span>
+                <span className="course-rating">★ {getCourseRating(c)}</span>
+              </div>
 
-            <p>ID: {formCourseId(c.id)}</p>
-            <p>Category: {c.category}</p>
-            <p>Description: {c.description}</p>
-            <p>Duration: {c.duration} hours</p>
-            <p>Rating: {getCourseRating(c)}</p>
-            <p>Instructor: {getInstructorName(c)}</p>
-            <p>Certificate: {getCertificateUrl(c)}</p>
-          </div>
-        ))}
+              <h3>{c.title}</h3>
+              <p className="course-description">{c.description}</p>
+
+              <div className="course-info">
+                <div className="info-row">
+                  <span>Course ID</span>
+                  <strong>{formCourseId(c.id)}</strong>
+                </div>
+                <div className="info-row">
+                  <span>Duration</span>
+                  <strong>{c.duration} hours</strong>
+                </div>
+                <div className="info-row">
+                  <span>Instructor</span>
+                  <strong>{getInstructorName(c)}</strong>
+                </div>
+                <div className="info-row">
+                  <span>Certificate</span>
+                  <strong>{getCertificateUrl(c)}</strong>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
+
+      <footer className="footer">
+        <p>© 2026 Edu Space. All rights reserved.</p>
+      </footer>
     </main>
   );
 }
