@@ -5,10 +5,8 @@ import type {
   Admin,
 } from "../types/user.types";
 
-// Union Type
 type CourseId = string | number;
 
-// Function
 export function formCourseId(id: CourseId): string {
   if (typeof id === "string") {
     return `COURSE - ${id.toLocaleUpperCase()}`;
@@ -17,7 +15,6 @@ export function formCourseId(id: CourseId): string {
   return `COURSE - ${id}`;
 }
 
-// Type Guard
 export function getUserInfo(user: Student | Instructor): void {
   console.log(`Fullname: ${user.fullName}`);
 
@@ -31,7 +28,6 @@ export function getUserInfo(user: Student | Instructor): void {
   }
 }
 
-// Function with Type Guard
 export function showUserRole(user: PlatformUser): string {
   if ("enrolledCourseIds" in user) {
     return `Student: ${user.fullName}`;
@@ -48,7 +44,6 @@ export function showUserRole(user: PlatformUser): string {
   return "Unknown role";
 }
 
-// Function Overloading
 export function createPlatformUser(fullName: string, role: "student"): Student;
 
 export function createPlatformUser(
@@ -58,7 +53,6 @@ export function createPlatformUser(
 
 export function createPlatformUser(fullName: string, role: "admin"): Admin;
 
-// Implementation
 export function createPlatformUser(
   fullName: string,
   role: "student" | "instructor" | "admin",

@@ -1,7 +1,6 @@
 import { courses } from "../data/courses";
 import type { Course } from "../types/course.types";
 
-// Function Overloading
 export function getCourseInfo(id: number): Course | undefined;
 
 export function getCourseInfo(title: string): Course | undefined;
@@ -16,7 +15,6 @@ export function getCourseInfo(value: number | string): Course | undefined {
   );
 }
 
-// Optional Chaining + Nullish Coalescing
 export function getInstructorName(course: Course): string {
   return course.details?.instructor?.fullName ?? "Not assigned";
 }
