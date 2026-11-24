@@ -1,13 +1,16 @@
 {
   "name": "edu-space",
+  "homepage": "https://s-Ira-d.github.io/lesson-43",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
+    "build": "tsc && copyfiles -u 1 dist/**/*.js dist/**/*.map public",
+    "watch": "tsc --watch",
+    "check": "tsc --noEmit",
+    "dev": "live-server public",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public"
   },
   "dependencies": {
     "react": "^19.3.1",
@@ -18,6 +21,8 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "copyfiles": "^2.4.1",
+    "gh-pages": "^6.3.0",
     "oxlint": "^1.90.0",
     "typescript": "~7.0.2",
     "vite": "^8.3.6"
